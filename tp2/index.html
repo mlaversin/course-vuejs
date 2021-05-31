@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<title>Domotique</title>
+
+
+</head>
+<body>
+	<div id="app" class="container">
+
+		<div class="row">
+			<div class="col-xs-12">
+
+				<h2>Les Appareils</h2>
+					<ul class="list-group">
+						<li 
+						v-for = "(a, index) in tableau"
+						class="list-group-item"
+						v-bind:class="{ 'list-group-item-danger': getEteint(index), 'list-group-item-success' : getAllume(index)}"
+						>
+							<h4> {{a.name}} -- {{a.status}} </h4>
+							<button @click="allumer(index)" class="btn btn-success"> ON</button>
+							<button @click="eteindre(index)" class="ml-2 btn btn-danger"> OFF</button> 
+						</li>
+					</ul>
+			<br>
+			<button
+			@click="toutAllumer()"
+			class="btn btn-success">ALL ON</button>
+
+			<button 
+			@click="toutEteindre()"
+			class="ml-2 btn btn-danger">ALL OFF</button>
+		</div>
+	</div>
+</div>
+
+<!-- cdn Vue JS -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script>
+const app = new Vue(
+  {
+    el :'#app',
+    data :
+    {
+    tableau:
+	[
+    	{ name:'TV oled',status:'allumée'},
+    	{ name:'Xbox',status:'éteinte'},
+    	{ name:'PlayStation',status:'allumée'},
+	]
+    },
+    methods:
+    {
+	 
+	getAllume(i)
+	{
+		if (this.tableau[i].status == 'allumée')
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	},
+	getEteint(i)
+	{
+		if (this.tableau[i].status == 'éteinte')
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	},
+    allumer(i)
+    {
+		this.tableau[i].status = 'allumée';
+    },
+    eteindre(i)
+    {
+		this.tableau[i].status = 'éteinte';
+    },
+	toutAllumer()
+    {
+		for (let a of this.tableau) {
+			a.status= 'allumée';
+		}
+    },
+    toutEteindre()
+    {
+		for (let a of this.tableau) {
+			a.status= 'éteinte';
+		}
+    }
+    }
+  });
+</script>
+
+</body>
+</html>
