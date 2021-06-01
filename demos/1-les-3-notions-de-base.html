@@ -1,0 +1,36 @@
+
+<ul>
+    <li>Lecture de champ input</li>
+    <li>Le trigger : le bouton</li>
+    <li>Le traitement et l'affichage</li>
+</ul>
+
+
+<!-- Zone où sont appliquées les règles de Vue -->
+<div id="app">
+<input v-model="nom">
+<button @click="affiche()">GO</button>
+<h3> {{ res }} </h3>
+
+</div>
+
+
+
+<!-- cdn de Vue JS -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            nom:'',
+            res:''
+        },
+        methods: {
+            affiche() {
+                this.res = this.nom;
+                this.nom = '';
+            }
+        }
+    })
+</script>
