@@ -123,12 +123,12 @@ const app = new Vue(
 		this.name ='';
 	},
 	persist() {
-	  localStorage.tableau = this.tableau;
+	  localStorage.tableau = JSON.stringify(this.tableau);
 	}
     },
   	mounted() {
 	if (localStorage.tableau) {
-	  this.tableau = localStorage.tableau;
+	  this.tableau = JSON.parse(localStorage.tableau);
 	}
   	}
   });
