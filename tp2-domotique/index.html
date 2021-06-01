@@ -45,6 +45,10 @@
 				</div>
 			</div>
 
+			<button
+			@click="persist"
+			class="ml-2 btn btn-primary"><i class="fas fa-save"></i></button>
+
 		</div>
 	</div>
 </div>
@@ -117,8 +121,18 @@ const app = new Vue(
 	{
 		this.tableau.push({name: this.name, status: 'allumée'});
 		this.name ='';
+	},
+	persist() {
+	  localStorage.name = this.name;
+	  localStorage.age = this.age;
+	  console.log('maintenant prétendre que j\'ai fait plus de choses...');
 	}
-    }
+    },
+  	mounted() {
+	if (localStorage.tableau) {
+	  this.tableau = localStorage.tableau;
+	}
+  	}
   });
 </script>
 
